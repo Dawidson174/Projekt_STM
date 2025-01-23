@@ -50,34 +50,34 @@ $(wildcard ../makefile.init) \
 $(wildcard ../makefile.targets) \
 
 
-BUILD_ARTIFACT_NAME := DemoApp07_LwIP
+BUILD_ARTIFACT_NAME := Project_Final
 BUILD_ARTIFACT_EXTENSION := elf
 BUILD_ARTIFACT_PREFIX :=
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXECUTABLES += \
-DemoApp07_LwIP.elf \
+Project_Final.elf \
 
 MAP_FILES += \
-DemoApp07_LwIP.map \
+Project_Final.map \
 
 SIZE_OUTPUT += \
 default.size.stdout \
 
 OBJDUMP_LIST += \
-DemoApp07_LwIP.list \
+Project_Final.list \
 
 
 # All Target
 all: main-build
 
 # Main-build Target
-main-build: DemoApp07_LwIP.elf secondary-outputs
+main-build: Project_Final.elf secondary-outputs
 
 # Tool invocations
-DemoApp07_LwIP.elf DemoApp07_LwIP.map: $(OBJS) $(USER_OBJS) C:\Users\dawid\STM32CubeIDE\workspace_1.17.0\DemoApp07_LwIP\STM32F746ZGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "DemoApp07_LwIP.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"C:\Users\dawid\STM32CubeIDE\workspace_1.17.0\DemoApp07_LwIP\STM32F746ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DemoApp07_LwIP.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Project_Final.elf Project_Final.map: $(OBJS) $(USER_OBJS) C:\Users\dawid\OneDrive\Dokumenty\Studia\ Chmura\Microprocessor\Final_Project\Projekt_STM\Project_Final\STM32F746ZGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "Project_Final.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"C:\Users\dawid\OneDrive\Dokumenty\Studia Chmura\Microprocessor\Final_Project\Projekt_STM\Project_Final\STM32F746ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Project_Final.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -86,14 +86,14 @@ default.size.stdout: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-DemoApp07_LwIP.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "DemoApp07_LwIP.list"
+Project_Final.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "Project_Final.list"
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) DemoApp07_LwIP.elf DemoApp07_LwIP.list DemoApp07_LwIP.map default.size.stdout
+	-$(RM) Project_Final.elf Project_Final.list Project_Final.map default.size.stdout
 	-@echo ' '
 
 secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST)
