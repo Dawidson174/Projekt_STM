@@ -19,6 +19,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "cmsis_os.h"
+#include "i2c.h"
 #include "lwip.h"
 #include "usart.h"
 #include "gpio.h"
@@ -26,6 +27,9 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "lwip/apps/httpd.h"
+#include "lcd_i2c.h"
+#include <stdbool.h>
+#include <stdio.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -45,7 +49,7 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-
+struct lcd_disp disp;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -89,8 +93,14 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_USART3_UART_Init();
+  MX_I2C1_Init();
   /* USER CODE BEGIN 2 */
-
+  disp.addr = (0x27 << 1);
+  disp.bl = true;
+  lcd_init(&disp);
+  sprintf((char *)disp.f_line, "To 1. linia");
+  sprintf((char *)disp.s_line, "a to druga linia");
+  lcd_display(&disp);
   /* USER CODE END 2 */
 
   /* Call init function for freertos objects (in freertos.c) */
@@ -104,7 +114,15 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+	sprintf((char *)disp.f_line, "     ******");
+	sprintf((char *)disp.s_line, "");
+	HAL_Delay(500);
+	lcd_display(&disp);
 
+	sprintf((char *)disp.f_line, "");
+	sprintf((char *)disp.s_line, "     ******");
+	HAL_Delay(500);
+	lcd_display(&disp);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -116,6 +134,8 @@ int main(void)
   * @brief System Clock Configuration
   * @retval None
   */
+
+
 void SystemClock_Config(void)
 {
   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
