@@ -30,6 +30,7 @@
 #include "lcd_i2c.h"
 #include <stdbool.h>
 #include <stdio.h>
+#include <stdlib.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -50,6 +51,8 @@
 
 /* USER CODE BEGIN PV */
 struct lcd_disp disp;
+float my_variable = 0.0;
+uint8_t rx_buffer[1];
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -101,6 +104,8 @@ int main(void)
   sprintf((char *)disp.f_line, "To 1. linia");
   sprintf((char *)disp.s_line, "a to druga linia");
   lcd_display(&disp);
+
+  HAL_UART_Receive_IT(&huart3, rx_buffer, 1);
   /* USER CODE END 2 */
 
   /* Call init function for freertos objects (in freertos.c) */
@@ -134,8 +139,6 @@ int main(void)
   * @brief System Clock Configuration
   * @retval None
   */
-
-
 void SystemClock_Config(void)
 {
   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
@@ -189,7 +192,22 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
+    if (huart->Instance == USART3) {  // Sprawdzenie, czy dane przyszły z USART1
+        if (rx_buffer[0] == '+') {
+            my_variable += 10.0;
+        } else if (rx_buffer[0] == '-') {
+            my_variable -= 10.0;
+        }
 
+        char response[50];
+        sprintf(response, "Wartość: %.2f\r\n", my_variable);
+        HAL_UART_Transmit(&huart3, (uint8_t*)response, strlen(response), HAL_MAX_DELAY);
+
+        // Ponowne włączenie odbioru danych
+        HAL_UART_Receive_IT(&huart3, rx_buffer, 1);
+    }
+}
 /* USER CODE END 4 */
 
 /**
