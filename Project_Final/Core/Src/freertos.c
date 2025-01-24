@@ -69,7 +69,6 @@ void StartDefaultTask(void const * argument);
 void StartUdpEcho(void const * argument);
 void StartTcpEcho(void const * argument);
 
-extern struct netif gnetif;
 extern void MX_LWIP_Init(void);
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
@@ -94,26 +93,6 @@ void vApplicationGetIdleTaskMemory( StaticTask_t **ppxIdleTaskTCBBuffer, StackTy
   * @param  None
   * @retval None
   */
-
-void StartHttpServerTask(void *argument)
-{
-    // Wait for the network interface to be up
-    while (!netif_is_up(&gnetif))
-    {
-        osDelay(100);
-    }
-
-    // Start the HTTP server
-    httpd_init();
-
-    // Keep the task running
-    for (;;)
-    {
-        osDelay(1000);
-    }
-}
-
-
 void MX_FREERTOS_Init(void) {
   /* USER CODE BEGIN Init */
 
