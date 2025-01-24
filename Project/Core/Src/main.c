@@ -51,7 +51,7 @@
 
 /* USER CODE BEGIN PV */
 struct lcd_disp disp;
-float my_variable = 0.0;
+volatile float my_variable = 0.0;
 uint8_t rx_buffer[1];
 /* USER CODE END PV */
 
@@ -101,8 +101,8 @@ int main(void)
   disp.addr = (0x27 << 1);
   disp.bl = true;
   lcd_init(&disp);
-  sprintf((char *)disp.f_line, "To 1. linia");
-  sprintf((char *)disp.s_line, "a to druga linia");
+  sprintf((char *)disp.f_line, "Wartosc: %.2f", my_variable);
+  sprintf((char *)disp.s_line, "");
   lcd_display(&disp);
 
   HAL_UART_Receive_IT(&huart3, rx_buffer, 1);
@@ -117,17 +117,17 @@ int main(void)
   /* We should never get here as control is now taken by the scheduler */
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  float prev_variable = -1.0;
   while (1)
   {
-	sprintf((char *)disp.f_line, "     ******");
-	sprintf((char *)disp.s_line, "");
-	HAL_Delay(500);
-	lcd_display(&disp);
+	  char buffer[16];
+	      sprintf(buffer, "Val: %.2f", my_variable);  // Formatowanie wartości zmiennej
 
-	sprintf((char *)disp.f_line, "");
-	sprintf((char *)disp.s_line, "     ******");
-	HAL_Delay(500);
-	lcd_display(&disp);
+	      sprintf((char *)disp.f_line, "%s", buffer);
+	      sprintf((char *)disp.s_line, "");
+	      lcd_display(&disp);  // Aktualizacja wyświetlacza
+
+	      HAL_Delay(500);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -193,19 +193,19 @@ void SystemClock_Config(void)
 
 /* USER CODE BEGIN 4 */
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
-    if (huart->Instance == USART3) {  // Sprawdzenie, czy dane przyszły z USART1
+    if (huart->Instance == USART3) {
         if (rx_buffer[0] == '+') {
             my_variable += 10.0;
         } else if (rx_buffer[0] == '-') {
             my_variable -= 10.0;
         }
 
-        char response[50];
-        sprintf(response, "Wartość: %.2f\r\n", my_variable);
+        // Wysyłanie aktualnej wartości
+        char response[20];
+        sprintf(response, "%.2f\n", my_variable);
         HAL_UART_Transmit(&huart3, (uint8_t*)response, strlen(response), HAL_MAX_DELAY);
 
-        // Ponowne włączenie odbioru danych
-        HAL_UART_Receive_IT(&huart3, rx_buffer, 1);
+        HAL_UART_Receive_IT(&huart3, rx_buffer, 1);  // Ponowne włączenie odbioru
     }
 }
 /* USER CODE END 4 */
