@@ -33,7 +33,7 @@ Core/Src/bmp2_config.o: ../Core/Src/bmp2_config.c ../Core/Inc/bmp2.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_tim_ex.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart_ex.h \
- ../Core/Inc/spi.h
+ ../Core/Inc/spi.h ../Core/Inc/main.h
 ../Core/Inc/bmp2.h:
 ../Core/Inc/bmp2_defs.h:
 ../Core/Inc/bmp2_config.h:
@@ -73,3 +73,4 @@ Core/Src/bmp2_config.o: ../Core/Src/bmp2_config.c ../Core/Inc/bmp2.h \
 ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h:
 ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart_ex.h:
 ../Core/Inc/spi.h:
+../Core/Inc/main.h:

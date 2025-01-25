@@ -12,6 +12,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "bmp2.h"
 #include "bmp2_config.h"
+#include "main.h"
 
 #include <string.h>
 #include <math.h>
