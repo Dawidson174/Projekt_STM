@@ -1,0 +1,8 @@
+../Core/Src/heater.c:35:6:HEATER_DIO_On	16	static
+../Core/Src/heater.c:45:6:HEATER_DIO_Off	16	static
+../Core/Src/heater.c:55:6:HEATER_DIO_Toggle	16	static
+../Core/Src/heater.c:66:6:HEATER_DIO_Write	16	static
+../Core/Src/heater.c:76:26:HEATER_DIO_Read	24	static
+../Core/Src/heater.c:87:6:HEATER_PWM_Init	16	static
+../Core/Src/heater.c:99:6:HEATER_PWM_WriteDuty	16	static
+../Core/Src/heater.c:110:7:HEATER_PWM_ReadDuty	16	static
