@@ -25,6 +25,7 @@ RM := rm -rf
 -include LWIP/Target/subdir.mk
 -include LWIP/App/subdir.mk
 -include Drivers/STM32F7xx_HAL_Driver/Src/subdir.mk
+-include Drivers/STM32F7xx_HAL_Driver/BSP/Components/lan8742/subdir.mk
 -include Drivers/BSP/Components/lan8742/subdir.mk
 -include Core/Startup/subdir.mk
 -include Core/Src/subdir.mk
@@ -76,8 +77,8 @@ all: main-build
 main-build: Project.elf secondary-outputs
 
 # Tool invocations
-Project.elf Project.map: $(OBJS) $(USER_OBJS) C:\Users\Win\Documents\GitHub\Projekt_STM\Project\STM32F746ZGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "Project.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"C:\Users\Win\Documents\GitHub\Projekt_STM\Project\STM32F746ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Project.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Project.elf Project.map: $(OBJS) $(USER_OBJS) C:\Users\Mirgi\OneDrive\Dokumenty\GitHub\Projekt_STM\Project\STM32F746ZGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "Project.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"C:\Users\Mirgi\OneDrive\Dokumenty\GitHub\Projekt_STM\Project\STM32F746ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Project.map" -Wl,--gc-sections -static -u _printf_float --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

@@ -34,6 +34,8 @@
 #include "ethernetif.h"
 #include <string.h>
 #include <stdio.h>
+#include "lcd_i2c.h"  // Upewnij się, że nagłówek do obsługi LCD jest dołączony
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -63,6 +65,9 @@ osThreadId tcpechoTaskHandle;
 /* USER CODE BEGIN FunctionPrototypes */
 //extern void tcpecho_init(void);
 //extern void udpecho_init(void);
+extern volatile float my_variable;
+extern struct lcd_disp disp;
+
 /* USER CODE END FunctionPrototypes */
 
 void StartDefaultTask(void const * argument);
@@ -113,6 +118,20 @@ void StartHttpServerTask(void *argument)
     }
 }
 
+void StartLCDTask(void *argument)
+{
+  for(;;)
+  {
+      char buffer[16];
+      sprintf(buffer, "Val: %.2f", my_variable);
+
+      sprintf((char *)disp.f_line, "%s", buffer);
+      sprintf((char *)disp.s_line, "");
+      lcd_display(&disp);
+
+      osDelay(500);
+  }
+}
 
 void MX_FREERTOS_Init(void) {
   /* USER CODE BEGIN Init */
@@ -151,6 +170,9 @@ void MX_FREERTOS_Init(void) {
   /* USER CODE BEGIN RTOS_THREADS */
   osThreadDef(httpServerTask, StartHttpServerTask, osPriorityNormal, 0, 1024);
   osThreadCreate(osThread(httpServerTask), NULL);
+  osThreadDef(lcdTask, StartLCDTask, osPriorityNormal, 0, 128);
+  osThreadCreate(osThread(lcdTask), NULL);
+
   /* USER CODE END RTOS_THREADS */
 
 }
