@@ -21,6 +21,8 @@
 #include "cmsis_os.h"
 #include "i2c.h"
 #include "lwip.h"
+#include "spi.h"
+#include "tim.h"
 #include "usart.h"
 #include "gpio.h"
 
@@ -31,6 +33,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include "bmp2_config.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -53,6 +56,9 @@
 struct lcd_disp disp;
 volatile float my_variable = 0.0;
 uint8_t rx_buffer[1];
+
+int temp_mdegC = 0;
+int press_Pa = 0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -64,7 +70,10 @@ void MX_FREERTOS_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+int _write(int file, char *ptr, int len)
+{
+  return (HAL_UART_Transmit(&huart3, (uint8_t*)ptr, len, HAL_MAX_DELAY) == HAL_OK) ? len : -1;
+}
 /* USER CODE END 0 */
 
 /**
@@ -97,6 +106,9 @@ int main(void)
   MX_GPIO_Init();
   MX_USART3_UART_Init();
   MX_I2C1_Init();
+  MX_SPI4_Init();
+  MX_TIM2_Init();
+  MX_TIM7_Init();
   /* USER CODE BEGIN 2 */
   disp.addr = (0x27 << 1);
   disp.bl = true;
@@ -106,6 +118,8 @@ int main(void)
   lcd_display(&disp);
 
   HAL_UART_Receive_IT(&huart3, rx_buffer, 1);
+
+  BMP2_Init(&bmp2dev);
   /* USER CODE END 2 */
 
   /* Call init function for freertos objects (in freertos.c) */
@@ -128,6 +142,13 @@ int main(void)
 	      lcd_display(&disp);  // Aktualizacja wyświetlacza
 
 	      HAL_Delay(500);
+
+	      double temp, press;
+	          BMP2_ReadData(&bmp2dev, &press, &temp);
+	          temp_mdegC = 1000*temp;
+	          press_Pa = 100*press;
+	          printf("{\"id\":1,\"temp\":%5.2f, \"press\":%7.2f }\r\n", (float)temp, (float)press);
+	          HAL_Delay(250);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
