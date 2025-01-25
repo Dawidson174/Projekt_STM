@@ -135,13 +135,13 @@ int main(void)
   while (1)
   {
 	  char buffer[16];
-	      sprintf(buffer, "Val: %.2f", my_variable);  // Formatowanie wartości zmiennej
+	  	      sprintf(buffer, "Val: %.2f", my_variable);  // Formatowanie wartości zmiennej
 
-	      sprintf((char *)disp.f_line, "%s", buffer);
-	      sprintf((char *)disp.s_line, "");
-	      lcd_display(&disp);  // Aktualizacja wyświetlacza
+	  	      sprintf((char *)disp.f_line, "%s", buffer);
+	  	      sprintf((char *)disp.s_line, "");
+	  	      lcd_display(&disp);  // Aktualizacja wyświetlacza
 
-	      HAL_Delay(500);
+	  	      HAL_Delay(500);
 
 	      double temp, press;
 	          BMP2_ReadData(&bmp2dev, &press, &temp);
