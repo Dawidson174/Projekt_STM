@@ -35,6 +35,7 @@
 #include <string.h>
 #include <stdio.h>
 #include "lcd_i2c.h"  // Upewnij się, że nagłówek do obsługi LCD jest dołączony
+#include "bmp2_config.h"
 
 /* USER CODE END Includes */
 
@@ -67,6 +68,8 @@ osThreadId tcpechoTaskHandle;
 //extern void udpecho_init(void);
 extern volatile float my_variable;
 extern struct lcd_disp disp;
+extern int temp_mdegC;
+
 
 /* USER CODE END FunctionPrototypes */
 
@@ -133,6 +136,26 @@ void StartLCDTask(void *argument)
   }
 }
 
+void StartTempMonitorTask(void *argument)
+{
+    for (;;)
+    {
+        // Odczyt temperatury z czujnika BMP
+        double temp, press;
+        BMP2_ReadData(&bmp2dev, &press, &temp);
+
+        // Konwersja temperatury na milidegrees Celsius (mdegC)
+        temp_mdegC = (int)(temp * 1000);
+
+        // Wyświetlenie temperatury w konsoli
+        printf("Temperature: %.2f°C\n", temp);
+
+        osDelay(1000);  // Opóźnienie 1 sekunda
+    }
+}
+
+
+
 void MX_FREERTOS_Init(void) {
   /* USER CODE BEGIN Init */
 
@@ -172,6 +195,9 @@ void MX_FREERTOS_Init(void) {
   osThreadCreate(osThread(httpServerTask), NULL);
   osThreadDef(lcdTask, StartLCDTask, osPriorityNormal, 0, 128);
   osThreadCreate(osThread(lcdTask), NULL);
+  osThreadDef(tempMonitorTask, StartTempMonitorTask, osPriorityNormal, 0, 256);
+  osThreadCreate(osThread(tempMonitorTask), NULL);
+
 
   /* USER CODE END RTOS_THREADS */
 
