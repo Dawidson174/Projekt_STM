@@ -4199,7 +4199,7 @@ void MX_FREERTOS_Init(void) {
 
   /* USER CODE BEGIN RTOS_THREADS */
   osThreadId tempSensorTaskHandle;
-  osThreadDef(tempSensorTask, TempSensorTask, osPriorityNormal, 0, 256);
+  osThreadDef(tempSensorTask, TempSensorTask, osPriorityNormal, 0, 1024);
  8002360:	4b1f      	ldr	r3, [pc, #124]	@ (80023e0 <MX_FREERTOS_Init+0xf8>)
  8002362:	f107 043c 	add.w	r4, r7, #60	@ 0x3c
  8002366:	461d      	mov	r5, r3
@@ -4330,7 +4330,7 @@ void StartUdpEcho(void const * argument)
  8002430:	2b00      	cmp	r3, #0
  8002432:	d106      	bne.n	8002442 <StartUdpEcho+0x32>
  8002434:	4b2e      	ldr	r3, [pc, #184]	@ (80024f0 <StartUdpEcho+0xe0>)
- 8002436:	22fd      	movs	r2, #253	@ 0xfd
+ 8002436:	22fb      	movs	r2, #251	@ 0xfb
  8002438:	492e      	ldr	r1, [pc, #184]	@ (80024f4 <StartUdpEcho+0xe4>)
  800243a:	482f      	ldr	r0, [pc, #188]	@ (80024f8 <StartUdpEcho+0xe8>)
  800243c:	f01a ff94 	bl	801d368 <iprintf>
@@ -5505,6 +5505,7 @@ int main(void)
   MX_TIM7_Init();
  8002b8e:	f000 fbb5 	bl	80032fc <MX_TIM7_Init>
   /* USER CODE BEGIN 2 */
+
   disp.addr = (0x27 << 1);
  8002b92:	4b4d      	ldr	r3, [pc, #308]	@ (8002cc8 <main+0x15c>)
  8002b94:	224e      	movs	r2, #78	@ 0x4e

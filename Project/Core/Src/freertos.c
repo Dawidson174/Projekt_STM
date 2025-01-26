@@ -36,7 +36,6 @@
 #include <stdio.h>
 #include "lcd_i2c.h"  // Upewnij się, że nagłówek do obsługi LCD jest dołączony
 #include "bmp2_config.h"
-
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -68,10 +67,9 @@ osThreadId tcpechoTaskHandle;
 //extern void udpecho_init(void);
 extern volatile float my_variable;
 extern struct lcd_disp disp;
+extern struct bmp2_dev bmp2dev;
 extern volatile int temp_mdegC;
 extern volatile int press_Pa;
-extern struct bmp2_dev bmp2dev;
-
 /* USER CODE END FunctionPrototypes */
 
 void StartDefaultTask(void const * argument);
@@ -190,7 +188,7 @@ void MX_FREERTOS_Init(void) {
 
   /* USER CODE BEGIN RTOS_THREADS */
   osThreadId tempSensorTaskHandle;
-  osThreadDef(tempSensorTask, TempSensorTask, osPriorityNormal, 0, 256);
+  osThreadDef(tempSensorTask, TempSensorTask, osPriorityNormal, 0, 1024);
   tempSensorTaskHandle = osThreadCreate(osThread(tempSensorTask), NULL);
   osThreadDef(lcdTask, StartLCDTask, osPriorityNormal, 0, 128);
   osThreadCreate(osThread(lcdTask), NULL);

@@ -112,6 +112,7 @@ int main(void)
   MX_TIM2_Init();
   MX_TIM7_Init();
   /* USER CODE BEGIN 2 */
+
   disp.addr = (0x27 << 1);
   disp.bl = true;
   lcd_init(&disp);
