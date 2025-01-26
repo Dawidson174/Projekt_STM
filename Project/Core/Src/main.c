@@ -54,7 +54,7 @@
 
 /* USER CODE BEGIN PV */
 struct lcd_disp disp;
-volatile float my_variable = 20.0;
+volatile float my_variable = 0.0;
 uint8_t rx_buffer[1];
 
 int temp_mdegC = 0;
@@ -217,9 +217,9 @@ void SystemClock_Config(void)
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
     if (huart->Instance == USART3) {
         if (rx_buffer[0] == '+') {
-            my_variable += 0.5;
+            my_variable += 10.0;
         } else if (rx_buffer[0] == '-') {
-            my_variable -= 0.5;
+            my_variable -= 10.0;
         }
 
         // Wysyłanie aktualnej wartości
