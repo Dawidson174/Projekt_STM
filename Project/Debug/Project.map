@@ -28376,6 +28376,7 @@ LOAD C:/ST/STM32CubeIDE_1.17.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
  .text.vApplicationGetIdleTaskMemory
                 0x0800217c       0x34 ./Core/Src/freertos.o
                 0x0800217c                vApplicationGetIdleTaskMemory
+<<<<<<< HEAD
  .text.TempSensorTask
                 0x080021b0       0x78 ./Core/Src/freertos.o
                 0x080021b0                TempSensorTask
@@ -28385,6 +28386,14 @@ LOAD C:/ST/STM32CubeIDE_1.17.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
  .text.StartHttpServerTask
                 0x0800228c       0x30 ./Core/Src/freertos.o
                 0x0800228c                StartHttpServerTask
+=======
+ .text.StartHttpServerTask
+                0x080021b0       0x30 ./Core/Src/freertos.o
+                0x080021b0                StartHttpServerTask
+ .text.StartLCDTask
+                0x080021e0       0x64 ./Core/Src/freertos.o
+                0x080021e0                StartLCDTask
+>>>>>>> parent of 54da426 (naprawiona strona)
  .text.MX_FREERTOS_Init
                 0x080022bc      0x100 ./Core/Src/freertos.o
                 0x080022bc                MX_FREERTOS_Init

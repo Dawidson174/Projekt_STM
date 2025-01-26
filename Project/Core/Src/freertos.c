@@ -104,6 +104,7 @@ void vApplicationGetIdleTaskMemory( StaticTask_t **ppxIdleTaskTCBBuffer, StackTy
   * @retval None
   */
 
+<<<<<<< HEAD
 void TempSensorTask(void *argument) {
     double temp, press;
     while(1) {
@@ -119,6 +120,26 @@ void TempSensorTask(void *argument) {
 }
 
 
+=======
+void StartHttpServerTask(void *argument)
+{
+    // Wait for the network interface to be up
+    while (!netif_is_up(&gnetif))
+    {
+        osDelay(100);
+    }
+
+    // Start the HTTP server
+    httpd_init();
+
+    // Keep the task running
+    for (;;)
+    {
+        osDelay(1000);
+    }
+}
+
+>>>>>>> parent of 54da426 (naprawiona strona)
 void StartLCDTask(void *argument)
 {
   for(;;)
@@ -132,22 +153,6 @@ void StartLCDTask(void *argument)
 
       osDelay(500);
   }
-}
-
-void StartHttpServerTask(void *argument)
-{
-    while (!netif_is_up(&gnetif))
-    {
-        osDelay(100);
-    }
-
-    httpd_init();
-    http_server_init(); // Dodanie obsługi zapytań HTTP
-
-    for (;;)
-    {
-        osDelay(1000);
-    }
 }
 
 void MX_FREERTOS_Init(void) {
@@ -185,14 +190,18 @@ void MX_FREERTOS_Init(void) {
   tcpechoTaskHandle = osThreadCreate(osThread(tcpechoTask), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
+<<<<<<< HEAD
   osThreadDef(tempTask, TempSensorTask, osPriorityNormal, 0, 256);
   osThreadCreate(osThread(tempTask), NULL);
 
   osThreadDef(lcdTask, StartLCDTask, osPriorityNormal, 0, 128);
   osThreadCreate(osThread(lcdTask), NULL);
+=======
+>>>>>>> parent of 54da426 (naprawiona strona)
   osThreadDef(httpServerTask, StartHttpServerTask, osPriorityNormal, 0, 1024);
   osThreadCreate(osThread(httpServerTask), NULL);
-
+  osThreadDef(lcdTask, StartLCDTask, osPriorityNormal, 0, 128);
+  osThreadCreate(osThread(lcdTask), NULL);
 
   /* USER CODE END RTOS_THREADS */
 
