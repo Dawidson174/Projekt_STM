@@ -35,6 +35,7 @@
 #include <string.h>
 #include <stdio.h>
 #include "lcd_i2c.h"  // Upewnij się, że nagłówek do obsługi LCD jest dołączony
+#include "bmp2_config.h"
 
 /* USER CODE END Includes */
 
@@ -67,6 +68,8 @@ osThreadId tcpechoTaskHandle;
 //extern void udpecho_init(void);
 extern volatile float my_variable;
 extern struct lcd_disp disp;
+extern int temp_mdegC;
+
 
 /* USER CODE END FunctionPrototypes */
 
