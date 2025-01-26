@@ -105,7 +105,7 @@ void StartLCDTask(void *argument)
   for(;;)
   {
       char buffer[16];
-      sprintf(buffer, "Val: %.2f", my_variable);
+      sprintf(buffer, "Temp. zad.: %.2f", my_variable);
 
       sprintf((char *)disp.f_line, "%s", buffer);
       sprintf((char *)disp.s_line, "");
@@ -123,7 +123,6 @@ void StartHttpServerTask(void *argument)
     }
 
     httpd_init();
-    http_server_init(); // Dodanie obsługi zapytań HTTP
 
     for (;;)
     {
