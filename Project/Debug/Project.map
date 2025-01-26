@@ -28044,12 +28044,12 @@ LOAD C:/ST/STM32CubeIDE_1.17.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
  .text.vApplicationGetIdleTaskMemory
                 0x0800217c       0x34 ./Core/Src/freertos.o
                 0x0800217c                vApplicationGetIdleTaskMemory
- .text.StartHttpServerTask
-                0x080021b0       0x30 ./Core/Src/freertos.o
-                0x080021b0                StartHttpServerTask
  .text.StartLCDTask
-                0x080021e0       0x64 ./Core/Src/freertos.o
-                0x080021e0                StartLCDTask
+                0x080021b0       0x64 ./Core/Src/freertos.o
+                0x080021b0                StartLCDTask
+ .text.StartHttpServerTask
+                0x08002214       0x30 ./Core/Src/freertos.o
+                0x08002214                StartHttpServerTask
  .text.MX_FREERTOS_Init
                 0x08002244       0xdc ./Core/Src/freertos.o
                 0x08002244                MX_FREERTOS_Init

@@ -120,6 +120,7 @@ int main(void)
   HAL_UART_Receive_IT(&huart3, rx_buffer, 1);
 
   BMP2_Init(&bmp2dev);
+  http_server_init();
   /* USER CODE END 2 */
 
   /* Call init function for freertos objects (in freertos.c) */
@@ -134,14 +135,15 @@ int main(void)
   float prev_variable = -1.0;
   while (1)
   {
+	  if (prev_variable != my_variable) {
 	  char buffer[16];
-	  	      sprintf(buffer, "Val: %.2f", my_variable);  // Formatowanie wartości zmiennej
+	  sprintf(buffer, "Val: %.2f", my_variable);
+	  sprintf((char *)disp.f_line, "%s", buffer);
+	  lcd_display(&disp);  // Aktualizacja wyświetlacza LCD
+	  prev_variable = my_variable;
+	  }
 
-	  	      sprintf((char *)disp.f_line, "%s", buffer);
-	  	      sprintf((char *)disp.s_line, "");
-	  	      lcd_display(&disp);  // Aktualizacja wyświetlacza
-
-	  	      HAL_Delay(500);
+	      HAL_Delay(500);
 
 	      double temp, press;
 	          BMP2_ReadData(&bmp2dev, &press, &temp);
