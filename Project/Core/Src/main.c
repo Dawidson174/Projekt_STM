@@ -120,6 +120,7 @@ int main(void)
   HAL_UART_Receive_IT(&huart3, rx_buffer, 1);
 
   BMP2_Init(&bmp2dev);
+  http_server_init();
   /* USER CODE END 2 */
 
   /* Call init function for freertos objects (in freertos.c) */
