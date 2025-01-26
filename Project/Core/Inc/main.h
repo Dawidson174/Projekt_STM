@@ -57,6 +57,14 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define BMP280_SPI_SCK_Pin GPIO_PIN_2
+#define BMP280_SPI_SCK_GPIO_Port GPIOE
+#define BMP280_SPI_CS1_Pin GPIO_PIN_4
+#define BMP280_SPI_CS1_GPIO_Port GPIOE
+#define BMP280_SPI_MISO_Pin GPIO_PIN_5
+#define BMP280_SPI_MISO_GPIO_Port GPIOE
+#define BMP280_SPI_MOSI_Pin GPIO_PIN_6
+#define BMP280_SPI_MOSI_GPIO_Port GPIOE
 #define USER_Btn_Pin GPIO_PIN_13
 #define USER_Btn_GPIO_Port GPIOC
 #define MCO_Pin GPIO_PIN_0
@@ -67,6 +75,8 @@ void Error_Handler(void);
 #define RMII_REF_CLK_GPIO_Port GPIOA
 #define RMII_MDIO_Pin GPIO_PIN_2
 #define RMII_MDIO_GPIO_Port GPIOA
+#define HEATER_PWM_Pin GPIO_PIN_3
+#define HEATER_PWM_GPIO_Port GPIOA
 #define RMII_CRS_DV_Pin GPIO_PIN_7
 #define RMII_CRS_DV_GPIO_Port GPIOA
 #define RMII_RXD0_Pin GPIO_PIN_4
@@ -110,17 +120,7 @@ void Error_Handler(void);
 #define LD2_Pin GPIO_PIN_7
 #define LD2_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */
-#define BMP280_SPI_CS1_Pin GPIO_PIN_4
-#define BMP280_SPI_CS1_GPIO_Port GPIOE
 
-#define BMP280_SPI_SCK_Pin GPIO_PIN_2
-#define BMP280_SPI_SCK_GPIO_Port GPIOE
-
-#define BMP280_SPI_MISO_Pin GPIO_PIN_5
-#define BMP280_SPI_MISO_GPIO_Port GPIOE
-
-#define BMP280_SPI_MOSI_Pin GPIO_PIN_6
-#define BMP280_SPI_MOSI_GPIO_Port GPIOE
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus
