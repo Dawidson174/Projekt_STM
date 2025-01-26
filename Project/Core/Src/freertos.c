@@ -104,19 +104,20 @@ void vApplicationGetIdleTaskMemory( StaticTask_t **ppxIdleTaskTCBBuffer, StackTy
   * @retval None
   */
 
-void TempTask(void *argument) {
-    struct bmp2_dev bmp;  // Struktura do obsługi sensora
-    bmp2_init(&bmp);      // Inicjalizacja czujnika, upewnij się, że jest poprawna
+void TempSensorTask(void *argument) {
+    double temp, press;
+    while(1) {
+        if (BMP2_ReadData(&bmp2dev, &press, &temp) == BMP2_OK) {
+            temp_mdegC = (int)(temp * 1000);
 
-    while (1) {
-        float temp;
-        bmp2_get_temperature(&bmp, &temp);  // Pobranie temperatury z sensora
-        temp_mdegC = (int)(temp * 1000);    // Przypisanie wartości w milidegrees
-        printf("Aktualna temperatura: %d\n", temp_mdegC);
-
-        vTaskDelay(pdMS_TO_TICKS(1000));    // Opóźnienie 1 sekunda
+            printf("Temp: %.2f C, Press: %.2f Pa\n", temp, press);
+        } else {
+            printf("Błąd odczytu sensora BMP2\n");
+        }
+        osDelay(250);
     }
 }
+
 
 void StartLCDTask(void *argument)
 {
@@ -183,8 +184,9 @@ void MX_FREERTOS_Init(void) {
   tcpechoTaskHandle = osThreadCreate(osThread(tcpechoTask), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
-  osThreadDef(tempTask, TempTask, osPriorityNormal, 0, 256);
+  osThreadDef(tempTask, TempSensorTask, osPriorityNormal, 0, 256);
   osThreadCreate(osThread(tempTask), NULL);
+
   osThreadDef(lcdTask, StartLCDTask, osPriorityNormal, 0, 128);
   osThreadCreate(osThread(lcdTask), NULL);
   osThreadDef(httpServerTask, StartHttpServerTask, osPriorityNormal, 0, 1024);
