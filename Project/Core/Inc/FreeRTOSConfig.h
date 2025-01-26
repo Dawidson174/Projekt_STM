@@ -45,6 +45,10 @@
 
 /* USER CODE BEGIN Includes */
 /* Section where include file can be added */
+#define configUSE_TIME_SLICING  1
+#define configTICK_RATE_HZ      1000
+#define configMINIMAL_STACK_SIZE 128
+
 /* USER CODE END Includes */
 
 /* Ensure definitions are only used by the compiler, and not by the assembler. */

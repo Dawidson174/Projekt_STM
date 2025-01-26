@@ -99,7 +99,7 @@ int main(void)
   SystemClock_Config();
 
   /* USER CODE BEGIN SysInit */
-  BMP2_Init(&bmp2dev);
+
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
