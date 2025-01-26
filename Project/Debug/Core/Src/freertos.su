@@ -1,6 +1,6 @@
-../Core/Src/freertos.c:88:6:vApplicationGetIdleTaskMemory	24	static
-../Core/Src/freertos.c:103:6:StartLCDTask	32	static
-../Core/Src/freertos.c:118:6:StartHttpServerTask	16	static
+../Core/Src/freertos.c:91:6:vApplicationGetIdleTaskMemory	24	static
+../Core/Src/freertos.c:106:6:StartLCDTask	32	static
+../Core/Src/freertos.c:121:6:StartHttpServerTask	16	static
 ../Core/Src/freertos.c:136:6:MX_FREERTOS_Init	160	static
 ../Core/Src/freertos.c:188:6:StartDefaultTask	16	static
 ../Core/Src/freertos.c:210:6:StartUdpEcho	136	static

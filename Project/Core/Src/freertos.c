@@ -126,7 +126,6 @@ void StartHttpServerTask(void *argument)
     }
 
     httpd_init();
-    http_server_init(); // Dodanie obsługi zapytań HTTP
 
     for (;;)
     {
