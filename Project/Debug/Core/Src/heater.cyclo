@@ -1,8 +1,0 @@
-../Core/Src/heater.c:35:6:HEATER_DIO_On	1
-../Core/Src/heater.c:45:6:HEATER_DIO_Off	1
-../Core/Src/heater.c:55:6:HEATER_DIO_Toggle	1
-../Core/Src/heater.c:66:6:HEATER_DIO_Write	2
-../Core/Src/heater.c:76:26:HEATER_DIO_Read	2
-../Core/Src/heater.c:87:6:HEATER_PWM_Init	2
-../Core/Src/heater.c:99:6:HEATER_PWM_WriteDuty	2
-../Core/Src/heater.c:110:7:HEATER_PWM_ReadDuty	2
