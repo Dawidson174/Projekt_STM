@@ -146,28 +146,6 @@ void StartLCDTask(void *argument)
     }
 }
 
-void StartFanControlTask(void const *argument) {
-
-    for (;;) {
-
-        osMutexWait(i2cMutexHandle, osWaitForever);
-
-        float current_temp = (float)temp_mdegC / 1000.0f;
-        float set_temp = my_variable;
-
-
-        if (set_temp < current_temp) {
-            HAL_GPIO_WritePin(FAN_CONTROL_GPIO_Port, FAN_CONTROL_Pin, GPIO_PIN_SET);  // Włącz wentylator
-        } else {
-            HAL_GPIO_WritePin(FAN_CONTROL_GPIO_Port, FAN_CONTROL_Pin, GPIO_PIN_RESET);  // Wyłącz wentylator
-        }
-
-        osMutexRelease(i2cMutexHandle);
-        osDelay(pdMS_TO_TICKS(1000));  // Odświeżanie co sekundę
-    }
-}
-
-
 
 void StartHttpServerTask(void *argument)
 {
@@ -223,8 +201,6 @@ void MX_FREERTOS_Init(void) {
   osThreadCreate(osThread(tempSensorTask), NULL);
   osThreadDef(lcdTask, StartLCDTask, osPriorityNormal, 0, 256);
   osThreadCreate(osThread(lcdTask), NULL);
-  osThreadDef(fanTask, StartFanControlTask, osPriorityNormal, 0, 512);
-  osThreadCreate(osThread(fanTask), NULL);
   osMutexDef(i2cMutex);
   i2cMutexHandle = osMutexCreate(osMutex(i2cMutex));
   osThreadDef(httpServerTask, StartHttpServerTask, osPriorityNormal, 0, 1024);

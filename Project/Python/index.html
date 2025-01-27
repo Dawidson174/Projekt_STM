@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projekt STM32</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #3a6186, #89253e);
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: slideDown 1s ease-out;
+        }
+
+        .team-member {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin: 20px 0;
+            cursor: pointer;
+            transition: color 0.3s ease, transform 0.3s ease;
+            text-align: center;
+            position: relative;
+        }
+
+        .team-member:hover {
+            color: #00d4ff;
+            transform: scale(1.1);
+        }
+
+        .team-member::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background: #00d4ff;
+            transition: width 0.3s ease;
+            margin: 5px auto 0;
+        }
+
+        .team-member:hover::after {
+            width: 100%;
+        }
+
+        .team-member ul {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0 0 0; /* Dodano odstęp nad listą */
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .team-member:hover ul {
+            max-height: 200px; /* Rozwijana lista */
+        }
+
+        .team-member ul li {
+            padding: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            transition: background 0.3s ease;
+        }
+
+        .team-member ul li:last-child {
+            border-bottom: none;
+        }
+
+        .team-member ul li:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Animacje */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Projekt wykonali</h1>
+        
+        <div class="team-member">
+            Dawid Zieliński
+            <ul>
+                <li>Programowanie mikrokontrolera</li>
+                <li>Integracja z systemem FreeRTOS</li>
+                <li>Obsługa protokołu HTTP</li>
+            </ul>
+        </div>
+
+        <div class="team-member">
+            Martyna Rydczak
+            <ul>
+                <li>Projektowanie strony internetowej</li>
+                <li>Analiza wymagań systemowych</li>
+                <li>Tworzenie dokumentacji technicznej</li>
+            </ul>
+        </div>
+
+        <div class="team-member">
+            Szymon Rybka
+            <ul>
+                <li>Testowanie i walidacja</li>
+                <li>Optymalizacja wydajności</li>
+                <li>Implementacja algorytmów sterowania</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

@@ -132,7 +132,7 @@ int main(void)
   /* We should never get here as control is now taken by the scheduler */
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  float prev_variable = -1.0;
+  float prev_variable = 0;
   while (1)
   {
 	  if (prev_variable != my_variable) {
