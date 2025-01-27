@@ -1,5 +1,9 @@
-Core/Src/pwm.o: ../Core/Src/pwm.c ../Core/Inc/pwm.h \
- ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h \
+Components/Src/bmp2_config.o: ../Components/Src/bmp2_config.c \
+ C:/Users/Mirgi/OneDrive/Dokumenty/GitHub/Projekt_STM/Project/Components/Inc/bmp2.h \
+ C:/Users/Mirgi/OneDrive/Dokumenty/GitHub/Projekt_STM/Project/Components/Inc/bmp2_defs.h \
+ C:/Users/Mirgi/OneDrive/Dokumenty/GitHub/Projekt_STM/Project/Components/Inc/bmp2_config.h \
+ C:/Users/Mirgi/OneDrive/Dokumenty/GitHub/Projekt_STM/Project/Components/Inc/bmp2.h \
+ ../Core/Inc/main.h ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h \
  ../Core/Inc/stm32f7xx_hal_conf.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_rcc.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_def.h \
@@ -31,8 +35,13 @@ Core/Src/pwm.o: ../Core/Src/pwm.c ../Core/Inc/pwm.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_tim.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_tim_ex.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h \
- ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart_ex.h
-../Core/Inc/pwm.h:
+ ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart_ex.h \
+ ../Core/Inc/spi.h ../Core/Inc/main.h
+C:/Users/Mirgi/OneDrive/Dokumenty/GitHub/Projekt_STM/Project/Components/Inc/bmp2.h:
+C:/Users/Mirgi/OneDrive/Dokumenty/GitHub/Projekt_STM/Project/Components/Inc/bmp2_defs.h:
+C:/Users/Mirgi/OneDrive/Dokumenty/GitHub/Projekt_STM/Project/Components/Inc/bmp2_config.h:
+C:/Users/Mirgi/OneDrive/Dokumenty/GitHub/Projekt_STM/Project/Components/Inc/bmp2.h:
+../Core/Inc/main.h:
 ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:
 ../Core/Inc/stm32f7xx_hal_conf.h:
 ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_rcc.h:
@@ -66,3 +75,5 @@ Core/Src/pwm.o: ../Core/Src/pwm.c ../Core/Inc/pwm.h \
 ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_tim_ex.h:
 ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h:
 ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart_ex.h:
+../Core/Inc/spi.h:
+../Core/Inc/main.h:

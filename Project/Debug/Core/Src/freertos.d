@@ -78,9 +78,12 @@ Core/Src/freertos.o: ../Core/Src/freertos.c \
  ../Middlewares/Third_Party/LwIP/src/include/lwip/priv/memp_std.h \
  ../Middlewares/Third_Party/LwIP/src/include/lwip/priv/memp_priv.h \
  ../Middlewares/Third_Party/LwIP/src/include/lwip/priv/mem_priv.h \
- ../LWIP/Target/ethernetif.h ../Core/Inc/lcd_i2c.h \
- ../Core/Inc/bmp2_config.h ../Core/Inc/bmp2.h ../Core/Inc/bmp2_defs.h \
- ../Core/Inc/main.h ../Core/Inc/spi.h
+ ../LWIP/Target/ethernetif.h \
+ C:/Users/Mirgi/OneDrive/Dokumenty/GitHub/Projekt_STM/Project/Components/Inc/lcd_i2c.h \
+ C:/Users/Mirgi/OneDrive/Dokumenty/GitHub/Projekt_STM/Project/Components/Inc/bmp2_config.h \
+ C:/Users/Mirgi/OneDrive/Dokumenty/GitHub/Projekt_STM/Project/Components/Inc/bmp2.h \
+ C:/Users/Mirgi/OneDrive/Dokumenty/GitHub/Projekt_STM/Project/Components/Inc/bmp2_defs.h \
+ ../Core/Inc/spi.h ../Core/Inc/main.h
 ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h:
 ../Core/Inc/FreeRTOSConfig.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h:
@@ -162,9 +165,9 @@ Core/Src/freertos.o: ../Core/Src/freertos.c \
 ../Middlewares/Third_Party/LwIP/src/include/lwip/priv/memp_priv.h:
 ../Middlewares/Third_Party/LwIP/src/include/lwip/priv/mem_priv.h:
 ../LWIP/Target/ethernetif.h:
-../Core/Inc/lcd_i2c.h:
-../Core/Inc/bmp2_config.h:
-../Core/Inc/bmp2.h:
-../Core/Inc/bmp2_defs.h:
-../Core/Inc/main.h:
+C:/Users/Mirgi/OneDrive/Dokumenty/GitHub/Projekt_STM/Project/Components/Inc/lcd_i2c.h:
+C:/Users/Mirgi/OneDrive/Dokumenty/GitHub/Projekt_STM/Project/Components/Inc/bmp2_config.h:
+C:/Users/Mirgi/OneDrive/Dokumenty/GitHub/Projekt_STM/Project/Components/Inc/bmp2.h:
+C:/Users/Mirgi/OneDrive/Dokumenty/GitHub/Projekt_STM/Project/Components/Inc/bmp2_defs.h:
 ../Core/Inc/spi.h:
+../Core/Inc/main.h:

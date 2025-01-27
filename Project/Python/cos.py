@@ -2,7 +2,7 @@ import serial
 import tkinter as tk
 
 # Ustawienia portu szeregowego - dostosuj do swojej konfiguracji
-ser = serial.Serial(port='COM3', baudrate=115200, timeout=1)
+ser = serial.Serial(port='COM6', baudrate=115200, timeout=1)
 
 # Funkcja wysyłająca komendę do STM32
 def send_command(command):
