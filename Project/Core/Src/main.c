@@ -143,14 +143,14 @@ int main(void)
 	  prev_variable = my_variable;
 	  }
 
-	      HAL_Delay(500);
+	  HAL_Delay(500);
 
-	      double temp, press;
-	          BMP2_ReadData(&bmp2dev, &press, &temp);
-	          temp_mdegC = 1000*temp;
-	          press_Pa = 100*press;
-	          printf("{\"id\":1,\"temp\":%5.2f, \"press\":%7.2f }\r\n", (float)temp, (float)press);
-	          HAL_Delay(250);
+	  double temp, press;
+	  BMP2_ReadData(&bmp2dev, &press, &temp);
+	  temp_mdegC = 1000*temp;
+	  press_Pa = 100*press;
+	  printf("{\"id\":1,\"temp\":%5.2f, \"press\":%7.2f }\r\n", (float)temp, (float)press);
+	  HAL_Delay(250);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

@@ -157,9 +157,12 @@ void StartFanControlTask(void const *argument) {
 
 
         if (set_temp < current_temp) {
-            HAL_GPIO_WritePin(FAN_CONTROL_GPIO_Port, FAN_CONTROL_Pin, GPIO_PIN_SET);  // Włącz wentylator
+        	HAL_GPIO_WritePin(HEATER_CONTROL_GPIO_Port, HEATER_CONTROL_Pin, GPIO_PIN_RESET);
+            HAL_GPIO_WritePin(FAN_CONTROL_GPIO_Port, FAN_CONTROL_Pin, GPIO_PIN_SET);
         } else {
-            HAL_GPIO_WritePin(FAN_CONTROL_GPIO_Port, FAN_CONTROL_Pin, GPIO_PIN_RESET);  // Wyłącz wentylator
+            HAL_GPIO_WritePin(FAN_CONTROL_GPIO_Port, FAN_CONTROL_Pin, GPIO_PIN_RESET);
+        	HAL_GPIO_WritePin(HEATER_CONTROL_GPIO_Port, HEATER_CONTROL_Pin, GPIO_PIN_SET);
+
         }
 
         osMutexRelease(i2cMutexHandle);
@@ -219,11 +222,11 @@ void MX_FREERTOS_Init(void) {
   tcpechoTaskHandle = osThreadCreate(osThread(tcpechoTask), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
-  osThreadDef(tempSensorTask, StartTempSensorTask, osPriorityLow, 0, 512);
+  osThreadDef(tempSensorTask, StartTempSensorTask, osPriorityLow, 0, 256);
   osThreadCreate(osThread(tempSensorTask), NULL);
   osThreadDef(lcdTask, StartLCDTask, osPriorityNormal, 0, 256);
   osThreadCreate(osThread(lcdTask), NULL);
-  osThreadDef(fanTask, StartFanControlTask, osPriorityNormal, 0, 512);
+  osThreadDef(fanTask, StartFanControlTask, osPriorityNormal, 0, 256);
   osThreadCreate(osThread(fanTask), NULL);
   osMutexDef(i2cMutex);
   i2cMutexHandle = osMutexCreate(osMutex(i2cMutex));

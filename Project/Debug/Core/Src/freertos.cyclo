@@ -2,8 +2,8 @@
 ../Core/Src/freertos.c:107:6:StartTempSensorTask	2
 ../Core/Src/freertos.c:130:6:StartLCDTask	1
 ../Core/Src/freertos.c:149:6:StartFanControlTask	2
-../Core/Src/freertos.c:172:6:StartHttpServerTask	2
-../Core/Src/freertos.c:187:6:MX_FREERTOS_Init	1
-../Core/Src/freertos.c:245:6:StartDefaultTask	1
-../Core/Src/freertos.c:267:6:StartUdpEcho	4
-../Core/Src/freertos.c:332:6:StartTcpEcho	6
+../Core/Src/freertos.c:175:6:StartHttpServerTask	2
+../Core/Src/freertos.c:190:6:MX_FREERTOS_Init	1
+../Core/Src/freertos.c:248:6:StartDefaultTask	1
+../Core/Src/freertos.c:270:6:StartUdpEcho	4
+../Core/Src/freertos.c:335:6:StartTcpEcho	6
